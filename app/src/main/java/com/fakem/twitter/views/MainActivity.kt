@@ -5,11 +5,13 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -75,7 +77,7 @@ class MainActivity : ComponentActivity() {
 
                    ){
                        Column(modifier = Modifier.padding(it)) {
-
+                           HorizantalPager()
                        }
                    }
                 }
@@ -152,6 +154,7 @@ fun DrawerMenu(scaffoldState: ScaffoldState, scope: CoroutineScope) {
                         }
                     }
 
+
                     Spacer(modifier = Modifier
                         .padding(top = 20.dp)
                         .fillMaxWidth()
@@ -216,6 +219,14 @@ fun DrawerMenu(scaffoldState: ScaffoldState, scope: CoroutineScope) {
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun HorizantalPager(){
+    HorizontalPager(pageCount = 5 ) {
+        Text(text = "mkkkk", modifier = Modifier.fillMaxSize().background(Color.Yellow))
+    }
+}
+
 @Composable
 fun DrawerNavigationItems(item: BottomBarItemInfo) {
     Row(modifier = Modifier.padding(top = 18.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -265,7 +276,7 @@ fun PrimaryAccount(name : String, userName : String, following : Int, followers 
             Image(modifier = Modifier.size(50.dp), painter = painterResource(id = R.drawable.profile_photo), contentDescription = null )
             Text(modifier = Modifier.padding(top = 12.dp), text = name, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
             Text(modifier = Modifier.padding(top = 0.dp), text = "@$userName", fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-            
+
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp)) {
